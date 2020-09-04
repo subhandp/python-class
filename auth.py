@@ -32,6 +32,19 @@ class Auth:
         return False
 
     @classmethod
+    def guest(cls):
+        if cls.logged_user:
+            for i, val in enumerate(cls.data):
+                if val['username'] != cls.logged_user:
+                    print("Guest User\n")
+                    print(f"Guest {i}: {val['fullname']}")
+                else:
+                    print(f"not found: {cls.logged_user}")
+            return False
+        else:
+            print("all user guest")
+
+    @classmethod
     def check(cls,user):
         for i,val in enumerate(cls.data):
             if val["username"] ==  user["username"] and val["password"] == user["password"]:
@@ -84,9 +97,13 @@ class Auth:
     
 
 Auth.insert_data(data[1])
+Auth.insert_data(data[0])
+
 Auth.read()
 Auth.id()
 Auth.login({"username" : "hamish", "password":"secret2"})
 Auth.id()
 Auth.user()
+Auth.guest()
+
 
