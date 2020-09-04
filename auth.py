@@ -73,6 +73,8 @@ class Auth:
         
     @classmethod
     def insert_data(cls,data):
+        index = len(cls.data)
+        data["id"] = index
         cls.data.append(data)
 
     @classmethod
